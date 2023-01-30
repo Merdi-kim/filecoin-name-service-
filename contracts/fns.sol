@@ -21,7 +21,7 @@ contract FNS {
      * Minimum time for a name to live in the filecoin system
      * This can be considered as the period of ownership by a certain address
      */
-    uint minttl = 365 days;
+    uint minTtl = 365 * 24 * 60 * 60;
 
     /**
      *@dev registry for names 
@@ -44,9 +44,11 @@ contract FNS {
      * @param _isValidator The boolean for distinguishing validator names from normal names
      * @param _ttl The number of days that the owner(msg.sender) paid to own the name
     */ 
-    function registerName(bytes memory _name, bool _isValidator, uint64 _ttl ) external payable {
+    function registerName(bytes memory _name, bool _isValidator, uint _ttl ) external payable {
+        uint date = _ttl * 24 * 60 * 60;
         require(names[_name].ttl < block.timestamp, 'Name already owned');
-        names[_name] = NameInfo(msg.sender, msg.sender, _isValidator, block.timestamp + _ttl);
+        require(date > minTtl, 'Add ttl');
+        names[_name] = NameInfo(msg.sender, msg.sender, _isValidator, block.timestamp + date);
     }
 
    /**
@@ -85,8 +87,9 @@ contract FNS {
     * @param _extendedTtl The time that we want to extend on the ttl
     */ 
    function addTtl(bytes memory _name, uint64 _extendedTtl) external payable checkOwnership(_name) {
+    require(_extendedTtl > minTtl, 'increase ttl');
       names[_name].ttl = names[_name].ttl + _extendedTtl;
-   }
+    }
 
    /**
     * @dev function to get the address that owns a particular name
