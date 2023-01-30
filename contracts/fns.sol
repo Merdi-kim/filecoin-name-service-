@@ -87,7 +87,8 @@ contract FNS {
     * @param _extendedTtl The time that we want to extend on the ttl
     */ 
    function addTtl(bytes memory _name, uint64 _extendedTtl) external payable checkOwnership(_name) {
-    require(_extendedTtl > minTtl, 'increase ttl');
+    uint date = _extendedTtl * 24 * 60 * 60;
+      require(date > minTtl, 'increase ttl');
       names[_name].ttl = names[_name].ttl + _extendedTtl;
     }
 
