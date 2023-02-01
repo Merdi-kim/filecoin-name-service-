@@ -1,7 +1,5 @@
 import { Chain } from "@rainbow-me/rainbowkit";
 
-
-
 export const filecoinChain: Chain = {
     id: 3141,
     name: 'Filecoin Hyperspace',

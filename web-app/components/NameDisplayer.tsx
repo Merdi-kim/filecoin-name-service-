@@ -1,10 +1,7 @@
-import React, { Dispatch, SetStateAction } from 'react'
+import React from 'react'
+import { IModalProps } from '@/lib/types'
 
-interface INameDisplayerProps {
-  setModal: Dispatch<SetStateAction<boolean>>
-}
-
-function NameDisplayer({setModal}:INameDisplayerProps) {
+function NameDisplayer({setModal}: IModalProps) {
   return (
     <div className='relative h-16 w-5/6 sm:w-4/6 lg:w-2/6'>
         <div className="w-full h-full flex justify-between items-center px-4 py-2 rounded-md bg-slate-200">

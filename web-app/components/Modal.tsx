@@ -1,8 +1,6 @@
-import React, { ChangeEvent, Dispatch, SetStateAction, useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
+import { IModalProps } from '@/lib/types'
 
-interface IModalProps {
-    setModal: Dispatch<SetStateAction<boolean>>
-}
 function Modal({setModal}:IModalProps) {
 
   const [selectedFile, setSelectedFile] = useState<FileList>()
