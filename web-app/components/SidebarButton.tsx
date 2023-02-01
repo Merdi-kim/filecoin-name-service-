@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Router  from 'next/router'
+import { useRouter } from 'next/router'
 import React from 'react'
 
 interface ISidebarButtonProps {
@@ -10,7 +10,8 @@ interface ISidebarButtonProps {
 
 function SidebarButton({text, icon, path}: ISidebarButtonProps) {
 
-  const matchingPath = Router.pathname == path
+  const matchingPath = useRouter().pathname == path
+
   return (
     <Link href={path} className={`${ matchingPath ? 'bg-slate-600' : 'bg-gray-300' } flex items-center justify-center mb-4 mx-2 py-2 px-4 text-center rounded-lg cursor-pointer`}>
       
