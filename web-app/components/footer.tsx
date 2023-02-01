@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
   return (
-      <div className='flex px-14 justify-between'>
+      <div className='flex px-8 sm:px-14 pb-8 justify-between'>
         <div>
          <img src="illustrations/smile.png" alt="" className='h-24' />
         </div>
