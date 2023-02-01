@@ -2,19 +2,19 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div className='flex px-14 justify-between'>
+      <div className='flex px-14 justify-between'>
         <div>
-            <img src="/smile.png" alt="" className='h-24' />
+         <img src="illustrations/smile.png" alt="" className='h-24' />
         </div>
         <div>
-            <ul>
-                <li>About </li>
-                <li>Carreers</li>
-                <li>FAQ</li>
-                <li>Rules </li>
-            </ul>
+          <ul>
+            <li>About </li>
+            <li>Carreers</li>
+            <li>Governance </li>
+            <li>FAQ</li>    
+          </ul>
         </div>
-    </div>
+      </div>
   )
 }
 
