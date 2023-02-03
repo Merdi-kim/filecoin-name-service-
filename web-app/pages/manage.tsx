@@ -5,6 +5,7 @@ import NameDisplayer from '@/components/NameDisplayer';
 import MessageBox from '@/components/MessageBox';
 import NavBar from '@/components/NavBar';
 import { getAccount } from '@wagmi/core'
+import ResultPlaceholder from '@/components/ResultPlaceholder';
 
 function Manage() {
 
@@ -12,7 +13,7 @@ function Manage() {
 
   return (
     <div>
-        <div className='h-[88vh]'>
+        <div className='h-[88vh] text-white'>
           <NavBar/>
           <div className='h-[75vh] flex'>
             <div className='hidden md:flex w-1/6 h-full flex-col justify-center'>
@@ -25,7 +26,7 @@ function Manage() {
               </div>
               <div className='h-4/6 flex justify-center items-center w-full'>
                 <div className='min-w-[350px] w-1/2 h-12 px-2 rounded-2xl flex items-center justify-center bg-slate-200'>
-                 Names will appear here
+                 <ResultPlaceholder/>
                 </div>
               </div>
             </div>

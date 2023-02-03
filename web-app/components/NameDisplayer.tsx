@@ -9,7 +9,7 @@ function NameDisplayer({setModal}: IModalProps) {
 
   return (
     <div className='relative h-16 w-5/6 sm:w-4/6 lg:w-2/6'>
-        <div className="w-full h-full flex justify-between items-center px-4 py-2 rounded-md bg-slate-200">
+        <div className="w-full h-full flex justify-between items-center px-4 py-2 rounded-md bg-fadedColor">
             <span>{nameData.name}.fil</span>
             <span> {nameData.price} FIL</span>
         </div>

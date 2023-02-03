@@ -12,6 +12,7 @@ import abi from '@/artifacts/FNS.json'
 import { ethers } from 'ethers'
 import { useRecoilState } from 'recoil'
 import { nameInfo } from '@/lib/recoil'
+import ResultPlaceholder from '@/components/ResultPlaceholder'
 
 const {hash} = require('eth-ens-namehash')
 
@@ -41,35 +42,35 @@ function Home() {
 
   return (
     <div>
-        <div className='h-[88vh]'>
+        <div className='h-[100vh] bg-fadedColor text-white'>
           <NavBar/>
           <div className='h-[75vh] flex'>
             <div className='hidden md:flex w-1/6 h-full flex-col justify-center'>
                 <SidebarButton icon={'home'} text='Home' path='/home'/>
                 <SidebarButton icon={'settings'} text='Manage' path='/manage'/>
             </div>
-            <div className='w-full md:w-5/6 h-full flex flex-col items-center bg-slate-100'>
+            <div className='w-full md:w-5/6 h-full flex flex-col items-center bg-mainColor rounded-l-xl'>
               <div className="h-2/6 flex items-center" >
                 {!account?.address && <MessageBox message={'Connect your wallet in order to register a name'}/>}
               </div>
               <div className='h-1/6 flex justify-center items-center w-full'>
-                <div className='min-w-[350px] w-1/2 h-12 px-2 rounded-2xl flex items-center justify-center bg-slate-200'>
+                <div className='min-w-[350px] w-1/2 h-12 px-2 rounded-2xl flex items-center justify-center bg-fadedColor'>
                   <input 
                     type="text" 
                     placeholder='Eg: "name" ... not "name.fil" ' 
                     onChange={(e) => setName(e.target.value)} 
                     value={name} 
                     onFocus = {(e) => {setHideNameDisplayBox(true)}}
-                    className='w-full h-5/6 pl-2 mr-1 rounded-sm border-none outline-none bg-slate-100' 
+                    className='w-full h-5/6 pl-2 mr-1 border-none outline-none bg-slate-200 text-mainColor rounded-xl' 
                   />
-                  <div className='h-[2.5rem] w-[2.7rem] flex items-center justify-center bg-white hover:transition-all rounded-full hover:scale-105'>
+                  <div className='h-[2.5rem] w-[2.7rem] flex items-center justify-center bg-slate-200 border-2 border-mainColor hover:transition-all rounded-full hover:scale-105'>
                     <img src="/icons/search.svg" alt="" onClick={searchForName} className='h-4/6 cursor-pointer' />
                   </div>
                 </div>
               </div>
               <div className='h-3/6 w-full flex justify-center items-center'>
                 <>{hideNameDisplayBox ?
-                  <div>Here we go</div> : 
+                  <ResultPlaceholder/> : 
                   <>
                     {displayName ? <NameDisplayer setModal = {setShowModal}/> : <MessageBox message='Name already taken'/>}
                   </>  
@@ -77,9 +78,10 @@ function Home() {
               </div>
             </div>
           </div>
+          <Footer/>
         </div>
         {showModal && <Modal setModal = {setShowModal}/>}
-        <Footer/>
+        
     </div>
   )
 }
