@@ -3,8 +3,9 @@ import { IModalProps } from '@/lib/types'
 import { useRecoilState } from 'recoil'
 import { nameInfo } from '@/lib/recoil'
 import { contractAddress } from '@/utils';
-import abi from '@/artifacts/FNS.json'
+import abi from '@/artifacts/contracts/fns.sol/FNS.json'
 import { useContract, useSigner } from 'wagmi';
+import { ethers } from 'ethers';
 
 function Modal({setModal}:IModalProps) {
 
@@ -33,7 +34,8 @@ function Modal({setModal}:IModalProps) {
 
   const purchaseName = async() => {
     if(!nameData.nameHash || nameData.price < 0.005) return 
-    await contract?.registerName(nameData.nameHash, false, 366)
+    const priceTag =ethers.utils.formatEther(await contract?.getPriceTag())
+    await contract?.registerName(nameData.nameHash, false, 365, {value:ethers.utils.parseEther(`${priceTag}`)} )
     hideModal()
   }
   return (
