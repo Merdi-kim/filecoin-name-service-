@@ -1,13 +1,4 @@
-# Sample Hardhat Project
+# Filecoin Name Service
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+Filecoin Name Service a registry for human readable names on the filecoin virtual machine
 
-Try running some of the following tasks:
-
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.ts
-```

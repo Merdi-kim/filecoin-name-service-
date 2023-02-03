@@ -10,6 +10,9 @@ describe('File name system', () => {
   let contract:FNS
   let users:SignerWithAddress[]
   const nameHash = namehash.hash('foo.eth')
+  const ttl = 365
+  const wrongTtl = 360
+  const extendedTtl= 730
 
   async function deployContract() {
     const FnsContract = await ethers.getContractFactory('FNS')
@@ -29,15 +32,17 @@ describe('File name system', () => {
 
   describe('FNS interactions:REGISTER NAME', () => {
     it('should fail to create a new name ', async() => {
-      await expect(contract.registerName(nameHash, false, 360)).to.be.revertedWith('Add ttl')
+      const priceTag =ethers.utils.formatEther(await contract.getPriceTag())
+      await expect(contract.registerName(nameHash, false, wrongTtl, {value:ethers.utils.parseEther(`${priceTag}`)})).to.be.revertedWith('Add ttl')
     })
-
+    it('should fail to create a new name, wrong amount ', async() => {
+      await expect(contract.registerName(nameHash, false, ttl, {value:ethers.utils.parseEther('0.14')})).to.be.revertedWith('Wrong amount')
+    })
     it('should create a new name', async() => {
-      await expect(contract.registerName(nameHash, false, 366)).to.be.fulfilled
+      await expect(contract.registerName(nameHash, false, ttl, {value:ethers.utils.parseEther('0.1')})).to.be.fulfilled
     })
-
     it('should fail to create a new name with same nameHash', async() => {
-      await expect(contract.registerName(nameHash, false, 366)).to.be.revertedWith('Name already owned')
+      await expect(contract.registerName(nameHash, false, ttl, {value:ethers.utils.parseEther('0.1')})).to.be.revertedWith('Name already owned')
     })
   })
 
@@ -68,7 +73,6 @@ describe('File name system', () => {
     it('should fail to set new owner, caller not owner', async() => {
       await expect(contract.connect(users[1]).setNewOwner(nameHash, users[2].address)).to.be.rejectedWith('Not allowed')
     })
-    
     it('should set new owner of the name', async() => {
       await expect(contract.setNewOwner(nameHash, users[3].address)).to.be.fulfilled 
     })
@@ -82,7 +86,6 @@ describe('File name system', () => {
     it('should fail to set second controller, caller not owner', async() => {
       await expect(contract.connect(users[1]).setSecondController(nameHash, users[2].address)).to.be.rejectedWith('Not allowed')
     })
-
     //This works because the caller is the old secondController of the account
     it('should set second controller of the name', async() => {
       await expect(contract.setSecondController(nameHash, users[1].address)).to.be.fulfilled
@@ -92,16 +95,20 @@ describe('File name system', () => {
   describe('FNS interactions:ADD time to live for name', () => {
     it('should fail to increase ttl, name not registered', async() => {
       const Namehash = namehash.hash('fee.eth')
-      await expect(contract.addTtl(Namehash, 367)).to.be.rejectedWith('Name not owned')
+      await expect(contract.addTtl(Namehash, ttl,  {value:ethers.utils.parseEther('0.1')})).to.be.rejectedWith('Name not owned')
     })
     it('should fail to increase ttl, caller not owner', async() => {
-      await expect(contract.connect(users[2]).addTtl(nameHash, 367)).to.be.rejectedWith('Not allowed')
+      await expect(contract.connect(users[2]).addTtl(nameHash, ttl,  {value:ethers.utils.parseEther('0.1')})).to.be.rejectedWith('Not allowed')
     })
     it('should fail to increase ttl, ttl smaller than min ttl', async() => {
-      await expect(contract.connect(users[3]).addTtl(nameHash, 360)).to.be.revertedWith('increase ttl')
+      //Not yet very safe for ttl greater than minTtl but with module != 0
+      await expect(contract.connect(users[3]).addTtl(nameHash, 397,  {value:ethers.utils.parseEther('0.1')})).to.be.revertedWith('increase ttl')
+    })
+    it('should fail to increase ttl, wrong amount', async() => {
+      await expect(contract.connect(users[3]).addTtl(nameHash, extendedTtl,  {value:ethers.utils.parseEther('0.1')})).to.be.revertedWith('Wrong amount')
     })
     it('should increase ttl of the name', async() => {
-      await expect(contract.connect(users[3]).addTtl(nameHash, 370)).to.be.fulfilled
+      await expect(contract.connect(users[3]).addTtl(nameHash, extendedTtl,  {value:ethers.utils.parseEther('0.2')})).to.be.fulfilled
     })
   })
 

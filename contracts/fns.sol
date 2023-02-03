@@ -11,6 +11,13 @@ contract FNS {
         uint ttl;
     }
 
+   
+   /**
+    * @dev Price for all filecoin names for 1 year
+    * This price can be changed at any point in time
+    */
+   uint priceTag = 1 * 10 ** 17;
+
     /**
      * Domain for the filecoin name service. e.g: 'foo.fil'
      * @dev stored in a global variable incase the ecosystem wants to change the domain notation
@@ -38,6 +45,10 @@ contract FNS {
         _;
     }
 
+    event NameRegistered(bytes _name, address owner);
+    event NewOwner(bytes _name, address _newOwner);
+    event TtlAdded(bytes _name, uint _newTtl);
+
     /**
      * @dev register a name to the filecoin name service
      * @param _name The bytes of the name that we want to register
@@ -45,10 +56,12 @@ contract FNS {
      * @param _ttl The number of days that the owner(msg.sender) paid to own the name
     */ 
     function registerName(bytes memory _name, bool _isValidator, uint _ttl ) external payable {
+        require(msg.value == priceTag, 'Wrong amount');
         uint date = _ttl * 24 * 60 * 60;
         require(names[_name].ttl < block.timestamp, 'Name already owned');
-        require(date > minTtl, 'Add ttl');
+        require(date % minTtl == 0 && date >= minTtl, 'Add ttl');
         names[_name] = NameInfo(msg.sender, msg.sender, _isValidator, block.timestamp + date);
+        emit NameRegistered(_name, msg.sender);
     }
 
    /**
@@ -70,6 +83,7 @@ contract FNS {
    function setNewOwner(bytes memory _name, address _newOwner) external {
        require(names[_name].owner != address(0) && names[_name].owner == msg.sender, 'Not allowed');
        names[_name].owner = _newOwner;
+       emit NewOwner(_name, _newOwner);
    }
 
     /**
@@ -87,9 +101,11 @@ contract FNS {
     * @param _extendedTtl The time that we want to extend on the ttl
     */ 
    function addTtl(bytes memory _name, uint64 _extendedTtl) external payable checkOwnership(_name) {
-    uint date = _extendedTtl * 24 * 60 * 60;
-      require(date > minTtl, 'increase ttl');
+      uint date = _extendedTtl * 24 * 60 * 60;
+      require(date % minTtl == 0 && date > minTtl, 'increase ttl');
+      require(date/minTtl == msg.value/priceTag, 'Wrong amount');
       names[_name].ttl = names[_name].ttl + _extendedTtl;
+      emit TtlAdded(_name, names[_name].ttl + _extendedTtl);
     }
 
    /**
@@ -103,6 +119,10 @@ contract FNS {
    }
 
    /**
-    * add a function to change, if needed, the domain 
+    * @dev gets the price tag to purchase a name
+    * @return _priceTag returns the price tag 
     */
+   function getPriceTag() external view returns (uint _priceTag) {
+     return priceTag;
+   }
 }
