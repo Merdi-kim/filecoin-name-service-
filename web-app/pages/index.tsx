@@ -1,8 +1,8 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
 import Footer from '@/components/footer'
 import { truncateAddress } from '@/helpers'
+import HomeActionButton from '@/components/HomeActionButton'
+import NavBar from '@/components/NavBar'
 
 
 export default function Home() {
@@ -15,50 +15,56 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className='min-h-[100vh] p-4 bg-indigo-800 text-white bg-gradient-to-r from-[#141e30] to-[#243b55]'>
-        <div className='flex justify-start'>
-          <div className='bg-[#243b55] sm:w-[16rem] md:w-[18rem] lg:w-[24rem] xl:w-[28rem] rounded-[50%] p-14 sm:p-10 md:p-14 lg:p-20'>
-            <h2 className='lg:text-4xl xl:text-5xl font-medium'>{dummyAddress}</h2>
-            <p className='sm:text-sm md:text-lg lg:text-xl xl:text-2xl font-extralight lg:mt-4 xl:mt-6'>Too long to remember ? </p>
-            <img src="illustrations/angry.png" alt="" className='lg:h-36 xl:h-40' />
-          </div>
-        </div>
-        <div className='flex justify-end mt-6 md:mt-[-60px] lg:mt-[-200px] xl:pr-20'>
-          <div className='mb-2 lg:w-[45%] xl:w-[40%] rounded-[40px] bg-[#141e29] p-6'>
-            <h2 className='lg:text-4xl xl:text-5xl font-bold'>vitalik.fil</h2>
-            <p className='lg:text-xl xl:text-2xl font-extralight lg:mt-4 xl:mt-6'>Don't worry, we've got human readable names for your address</p>
-            <div className='flex justify-center'>
-              <img src="illustrations/smile.png" alt="" className='h-24 md:h-28 lg:h-36 xl:h-40' />
+      <main className='min-h-[100vh] text-white'>
+        
+        <div className='bg-gradient-to-t from-fadedColor to-mainColor pb-14'>
+          <NavBar isLandingPage/>
+          <div className='bg-arrow-bg bg-center bg-no-repeat bg-contain p-8'>
+          <div className='flex justify-start'>
+            <div className='flex flex-col items-center justify-center bg-cardColor sm:w-[16rem] md:w-[18rem] lg:w-[24rem] xl:w-[28rem] rounded-[50%] p-14 sm:p-10 md:p-14 lg:p-20'>
+              <h2 className='lg:text-4xl xl:text-5xl font-title'>{dummyAddress}</h2>
+              <p className='sm:text-sm md:text-lg lg:text-xl font-title lg:mt-4 xl:mt-6'>Your address is too long to remember or too long to easily share ? </p>
+              <img src="illustrations/angry.png" alt="" className='lg:h-36 xl:h-40' />
             </div>
           </div>
-        </div>
-        <div className="flex justify-center items-center h-32 mb-14">
-          <Link href={'/home'} className='text-lg sm:text-2xl font-medium px-3 py-2 border-b-2 border-white hover:border-blue-500 rounded-xl'>Grab a name</Link>
-        </div>
-        <div className='flex justify-center md:justify-start sm:px-14 '>
-          <div className='w-[95%] sm:w-[70%] md:w-[50%] lg:w-[40%] p-6 bg-[#243b55] rounded-lg mb-8'>
-            <h3 className='font-semibold mb-4'>Why names instead of addresses?</h3>
-            <p className='font-extralight'>
-              Names are easy to remember than 20 characters addresses. You get to look up easily for an address or a validator. 
-              One more benefit, names are less error prone.
-            </p>
+          <div className='flex justify-end mt-6 md:mt-[-60px] lg:mt-[-200px]'>
+            <div className='mb-2 lg:w-[45%] xl:w-[40%] rounded-[40px] bg-cardColor p-6'>
+              <h2 className='lg:text-4xl xl:text-5xl font-title'>vitalik.fil</h2>
+              <div className='flex'>
+                <p className='lg:text-xl font-title lg:mt-4 xl:mt-6'>Don't worry, we've got human readable names that you can assign to your address and easily share and remember </p>
+                <img src="illustrations/smile.png" alt="" className='h-24 md:h-28 lg:h-36 xl:h-40' />
+              </div>
+            </div>
           </div>
+          <HomeActionButton/>
+        </div>
+      
+        </div>
+        <div className='bg-gradient-to-b from-fadedColor to-mainColor px-4 md:px-20'>
+          <div className='flex justify-center md:justify-start sm:px-14 '>
+            <div className='w-[95%] sm:w-[70%] md:w-[50%] lg:w-[40%] p-6 bg-cardColor rounded-lg mb-8'>
+              <h3 className='font-title mb-4'>Why names instead of addresses?</h3>
+              <p className='font-title'>
+                Names are easy to remember than 20 characters addresses. You get to look up easily for an address or a validator. 
+                One more benefit, names are less error prone.
+              </p>
+            </div>
+          </div>
+
+          <div className='flex justify-center md:justify-end sm:px-14'>
+            <div className='w-[95%] sm:w-[70%] md:w-[50%] lg:w-[40%] p-6 bg-cardColor rounded-lg mb-8'>
+              <h3 className='font-title mb-4'>Own your handle</h3>
+              <p className='font-title'>
+                Once you have purchassed a handle, you're free to use it for the amount of time that you have paid for. You can also
+                set a second address to help you manage it.
+              </p>
+            </div>
+          </div>
+
+          <HomeActionButton hideArrow/>
+          <Footer/>
         </div>
 
-        <div className='flex justify-center md:justify-end sm:px-14'>
-          <div className='w-[95%] sm:w-[70%] md:w-[50%] lg:w-[40%] p-6 bg-[#243b55] rounded-lg mb-8'>
-            <h3 className='font-semibold mb-4'>Own your handle</h3>
-            <p className='font-extralight'>
-              Once you have purchassed a handle, you're free to use it for the amount of time that you have paid for. You can also
-              set a second address to help you manage it.
-            </p>
-          </div>
-        </div>
-
-        <div className="flex justify-center items-center h-32 mb-14">
-          <Link href={'/home'} className='text-2xl font-medium px-3 py-2 border-b-2 border-white hover:border-blue-500 rounded-xl'>Grab a name</Link>
-        </div>
-        <Footer/>
       </main>
     </>
   )

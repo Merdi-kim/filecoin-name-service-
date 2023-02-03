@@ -9,3 +9,11 @@ export interface ISidebarButtonProps {
   icon: string,
   path:string
 }
+
+export interface IHomeActionButtonProps {
+  hideArrow?:boolean
+}
+
+export interface INavBarProps {
+  isLandingPage?: boolean
+}
