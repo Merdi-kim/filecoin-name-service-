@@ -6,6 +6,7 @@ import { contractAddress } from '@/utils';
 import abi from '@/artifacts/contracts/fns.sol/FNS.json'
 import { useContract, useSigner } from 'wagmi';
 import { ethers } from 'ethers';
+import { CLIENT_RENEG_LIMIT } from 'tls';
 
 function Modal({setModal}:IModalProps) {
 
@@ -35,7 +36,7 @@ function Modal({setModal}:IModalProps) {
   const purchaseName = async() => {
     if(!nameData.nameHash || nameData.price < 0.005) return 
     const priceTag =ethers.utils.formatEther(await contract?.getPriceTag())
-    await contract?.registerName(nameData.nameHash, false, 365, {value:ethers.utils.parseEther(`${priceTag}`)} )
+    await contract?.registerName(nameData.nameHash, false, 365, {value:ethers.utils.parseEther(`0.1`)} )
     hideModal()
   }
   return (
