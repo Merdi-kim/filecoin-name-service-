@@ -7,6 +7,7 @@ import abi from '@/artifacts/contracts/fns.sol/FNS.json';
 import { useContract, useSigner } from 'wagmi';
 import { ethers } from 'ethers';
 import { CLIENT_RENEG_LIMIT } from 'tls';
+import Image from 'next/image';
 
 function Modal({ setModal }: IModalProps) {
   const [selectedFile, setSelectedFile] = useState<FileList>();
@@ -40,7 +41,7 @@ function Modal({ setModal }: IModalProps) {
   };
   return (
     <div className="h-[100vh] flex items-center justify-center w-full overflow-hidden absolute top-0 bg-mainColor text-white">
-      <img
+      <Image
         src="/icons/cross.svg"
         alt="cross"
         onClick={hideModal}
@@ -59,10 +60,10 @@ function Modal({ setModal }: IModalProps) {
           </div>
         </div>
         <div className="w-[50%] flex flex-col items-center justify-center">
-          <img src={previewFileUrl} alt="" className="h-[16rem] w-[16rem] object-contain rounded-lg bg-slate-100" />
+          <Image src={previewFileUrl!} alt="" className="h-[16rem] w-[16rem] object-contain rounded-lg bg-slate-100" />
           <input type="file" accept="image/*" onChange={previewPicture} id="profile" className="w-full hidden" />
           <label htmlFor="profile" className="mt-4 bg-gray-100 p-2 mb-4 cursor-pointer rounded-full">
-            <img src="/icons/addImage.svg" alt="add image" className="h-6" />
+            <Image src="/icons/addImage.svg" alt="add image" className="h-6" />
           </label>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { truncateAddress } from '@/helpers';
 import { INameInfoBoxProps } from '@/lib/types';
+import Image from 'next/image';
 import React from 'react';
 
 function NameInfoBox({ data }: INameInfoBoxProps) {
@@ -29,7 +30,7 @@ function NameInfoBox({ data }: INameInfoBoxProps) {
         </div>
       </div>
       <div className="w-1/2 bg-slate-400">
-        <img src="" alt="" className="h-full w-full rounded-lg" />
+        <Image src="/" alt="" className="h-full w-full rounded-lg" />
       </div>
     </div>
   );

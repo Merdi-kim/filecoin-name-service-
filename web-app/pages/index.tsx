@@ -3,6 +3,7 @@ import Footer from '@/components/footer';
 import { truncateAddress } from '@/helpers';
 import HomeActionButton from '@/components/HomeActionButton';
 import NavBar from '@/components/NavBar';
+import Image from 'next/image';
 
 export default function Home() {
   const dummyAddress = truncateAddress('f1abjxfbp274xpdqcpuaykwkfb43omjotacm2p3za');
@@ -24,7 +25,7 @@ export default function Home() {
                 <p className="sm:text-sm md:text-lg lg:text-xl font-title lg:mt-4 xl:mt-6">
                   Your address is too long to remember or too long to easily share ?{' '}
                 </p>
-                <img src="illustrations/angry.png" alt="" className="lg:h-36 xl:h-40" />
+                <Image src="illustrations/angry.png" alt="" className="lg:h-36 xl:h-40" />
               </div>
             </div>
             <div className="flex justify-end mt-6 md:mt-[-60px] lg:mt-[-200px]">
@@ -35,7 +36,7 @@ export default function Home() {
                     Don't worry, we've got human readable names that you can assign to your address and easily share and
                     remember{' '}
                   </p>
-                  <img src="illustrations/smile.png" alt="" className="h-24 md:h-28 lg:h-36 xl:h-40" />
+                  <Image src="illustrations/smile.png" alt="" className="h-24 md:h-28 lg:h-36 xl:h-40" />
                 </div>
               </div>
             </div>

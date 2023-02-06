@@ -13,6 +13,7 @@ import { ethers } from 'ethers';
 import { useRecoilState } from 'recoil';
 import { nameInfo } from '@/lib/recoil';
 import ResultPlaceholder from '@/components/ResultPlaceholder';
+import Image from 'next/image';
 
 const { hash } = require('eth-ens-namehash');
 
@@ -70,8 +71,8 @@ function Home() {
                   className="w-full h-5/6 pl-2 mr-1 border-none outline-none bg-slate-200 text-mainColor rounded-xl"
                 />
                 <div className="h-[2.5rem] w-[2.7rem] flex items-center justify-center bg-slate-200 border-2 border-mainColor hover:transition-all rounded-full hover:scale-105">
-                  { !loading ? <img src="/icons/search.svg" alt="search icon" onClick={searchForName} className="h-4/6 cursor-pointer" />:
-                  <img src="/icons/spinner.svg" alt="spinner icon" className="h-4/6 cursor-pointer animate-spin" />}
+                  { !loading ? <Image src="/icons/search.svg" alt="search icon" onClick={searchForName} className="h-4/6 cursor-pointer" />:
+                  <Image src="/icons/spinner.svg" alt="spinner icon" className="h-4/6 cursor-pointer animate-spin" />}
                 </div>
               </div>
             </div>
