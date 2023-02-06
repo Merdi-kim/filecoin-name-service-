@@ -5,6 +5,6 @@ export const nameInfo = atom({
     default: {
         name:'name',
         nameHash:'',
-        price: 0.01
+        price: 0.1
     }
 })

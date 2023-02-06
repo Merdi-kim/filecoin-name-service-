@@ -9,19 +9,21 @@ import ResultPlaceholder from '@/components/ResultPlaceholder';
 import { useContract, useProvider } from 'wagmi';
 import { contractAddress } from '@/utils';
 import abi from '@/artifacts/contracts/fns.sol/FNS.json'
-import { ethers } from 'ethers';
-import { useRecoilState } from 'recoil';
-import { nameInfo } from '@/lib/recoil';
+import { InameData } from '@/lib/types';
 
 const {hash} = require('eth-ens-namehash')
 
 function Manage() {
 
-  const [showModal, setShowModal] = useState(false)
+  const [nameData, setNameData] = useState<InameData>({
+    name:'',
+    owner:'',
+    secondController:'',
+    ttl:''
+  })
   const [name, setName] = useState('')
   const [displayName, setDisplayName] = useState(false)
   const [hideNameDisplayBox, setHideNameDisplayBox] = useState(true)
-  const [, setNameInfo] = useRecoilState(nameInfo)
   const account = getAccount()
   const provider = useProvider()
   const contract = useContract({
@@ -32,10 +34,10 @@ function Manage() {
 
   const searchForName = async() => {
     const nameHash = hash(name)
-    const {owner} = await contract?.checkName(nameHash)
+    const {owner, secondController, ttl} = await contract?.checkName(nameHash)
     setHideNameDisplayBox(false) 
     owner == account.address ? setDisplayName(true) : setDisplayName(false)
-    setNameInfo({name, nameHash, price:0.04})
+    setNameData({name, owner, secondController,ttl})
     setName('')
   }
 
@@ -72,7 +74,7 @@ function Manage() {
                   <>{hideNameDisplayBox ?
                     <ResultPlaceholder/> : 
                     <>
-                      {displayName ? <NameInfoBox/> : <MessageBox message="You don't own this name"/>}
+                      {displayName ? <NameInfoBox data={nameData}/> : <MessageBox message="You don't own this name"/>}
                     </>  
                   }</>
                 </div>

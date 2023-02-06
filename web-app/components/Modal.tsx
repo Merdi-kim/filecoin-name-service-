@@ -35,7 +35,7 @@ function Modal({setModal}:IModalProps) {
 
   const purchaseName = async() => {
     if(!nameData.nameHash || nameData.price < 0.005) return 
-    const priceTag =ethers.utils.formatEther(await contract?.getPriceTag())
+    //const priceTag =ethers.utils.formatEther(await contract?.getPriceTag())
     await contract?.registerName(nameData.nameHash, false, 365, {value:ethers.utils.parseEther(`0.1`)} )
     hideModal()
   }

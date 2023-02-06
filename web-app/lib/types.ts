@@ -17,3 +17,14 @@ export interface IHomeActionButtonProps {
 export interface INavBarProps {
   isLandingPage?: boolean
 }
+
+export interface InameData {
+  name:string,
+  owner:string,
+  secondController:string,
+  ttl:string | Object
+}
+
+export interface INameInfoBoxProps {
+  data: InameData
+}

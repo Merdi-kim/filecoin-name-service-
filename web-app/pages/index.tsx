@@ -15,13 +15,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className='min-h-[100vh] text-white'>
-        
+      <main className='min-h-[100vh] text-white'> 
         <div className='bg-gradient-to-t from-fadedColor to-mainColor pb-14'>
           <NavBar isLandingPage/>
           <div className='bg-arrow-bg bg-center bg-no-repeat bg-contain p-8'>
           <div className='flex justify-start'>
-            <div className='flex flex-col items-center justify-center bg-cardColor sm:w-[16rem] md:w-[18rem] lg:w-[24rem] xl:w-[28rem] rounded-[50%] p-14 sm:p-10 md:p-14 lg:p-20'>
+            <div className='flex flex-col items-center justify-center bg-cardColor sm:w-[16rem] md:w-[18rem] lg:w-[24rem] xl:w-[28rem] rounded-[50%] p-14 sm:p-10 md:p-14 lg:p-18'>
               <h2 className='lg:text-4xl xl:text-5xl font-title'>{dummyAddress}</h2>
               <p className='sm:text-sm md:text-lg lg:text-xl font-title lg:mt-4 xl:mt-6'>Your address is too long to remember or too long to easily share ? </p>
               <img src="illustrations/angry.png" alt="" className='lg:h-36 xl:h-40' />
@@ -60,7 +59,6 @@ export default function Home() {
               </p>
             </div>
           </div>
-
           <HomeActionButton hideArrow/>
           <Footer/>
         </div>

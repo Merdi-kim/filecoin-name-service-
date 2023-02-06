@@ -34,9 +34,10 @@ function Home() {
   const searchForName = async() => {
     const nameHash = hash(name)
     const {owner} = await contract?.checkName(nameHash)
+    const price = Number(ethers.utils.formatEther(await contract?.getPriceTag()))
     setHideNameDisplayBox(false) 
     owner == ethers.constants.AddressZero ? setDisplayName(true) : setDisplayName(false)
-    setNameInfo({name, nameHash, price:0.04})
+    setNameInfo({name, nameHash, price})
     setName('')
   }
 
