@@ -10,7 +10,12 @@ const config: HardhatUserConfig = {
     networks: {
       hardhat: {
         chainId: 1337
-      }
+      },
+      hyperspace: {
+        chainId: 3141,
+        url: "https://api.hyperspace.node.glif.io/rpc/v1",
+        accounts: [/*private key*/],
+      },
     }
 };
 

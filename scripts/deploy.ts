@@ -1,7 +1,11 @@
-import { ethers } from "hardhat";
+import { ethers, network } from "hardhat";
+
+//@ts-ignore
+const private_key = network.config.accounts[0]
+const wallet = new ethers.Wallet(private_key, ethers.provider)
 
 async function main() {
-  const FNS = await ethers.getContractFactory("FNS");
+  const FNS = await ethers.getContractFactory("FNS", wallet);
   const fns = await FNS.deploy();
   await fns.deployed();
 
