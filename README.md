@@ -23,7 +23,7 @@ Once in this directory, you can do two things:
 
 Do not forget to install all the dependencies ! 
 
-**❗️Disclaimer**: The smart contract is not fully featured for production, we're still adding features to the project. 
+**❗️Disclaimer** : The smart contract is not fully featured for production, we're still adding features to the project. 
 
 Help us make this project better by contributing to it. 
 
