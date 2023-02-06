@@ -44,6 +44,7 @@ function Modal({ setModal }: IModalProps) {
         src="/icons/cross.svg"
         alt="cross"
         onClick={hideModal}
+        height={20} width={30}
         className="absolute bg-white h-8 rounded-full p-1 cursor-pointer top-[22vh] left-[87vw] lg:left-[74vw] "
       />
       <div className=" h-auto sm:h-[50vh] w-[80vw] lg:w-[50vw] flex flex-col items-center sm:flex-row bg-fadedColor rounded-lg overflow-hidden">
@@ -59,10 +60,10 @@ function Modal({ setModal }: IModalProps) {
           </div>
         </div>
         <div className="w-[50%] flex flex-col items-center justify-center">
-          <Image src={previewFileUrl!} alt="" className="h-[16rem] w-[16rem] object-contain rounded-lg bg-slate-100" />
+          <Image src={previewFileUrl!} alt="" height={400} width={400} className="h-[16rem] w-[16rem] object-contain rounded-lg bg-slate-100" />
           <input type="file" accept="image/*" onChange={previewPicture} id="profile" className="w-full hidden" />
           <label htmlFor="profile" className="mt-4 bg-gray-100 p-2 mb-4 cursor-pointer rounded-full">
-            <Image src="/icons/addImage.svg" alt="add image" className="h-6" />
+            <Image src="/icons/addImage.svg" height={20} width={20} alt="add image" className="h-6" />
           </label>
         </div>
       </div>

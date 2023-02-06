@@ -30,7 +30,7 @@ function NameInfoBox({ data }: INameInfoBoxProps) {
         </div>
       </div>
       <div className="w-1/2 bg-slate-400">
-        <Image src="/" alt="" className="h-full w-full rounded-lg" />
+        <Image src="/" height={400} width={400} alt="" className="h-full w-full rounded-lg" />
       </div>
     </div>
   );

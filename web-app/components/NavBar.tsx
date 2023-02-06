@@ -15,8 +15,10 @@ function NavBar({ isLandingPage }: INavBarProps) {
         <Link href={'/'}>
           <Image
             src="https://user-images.githubusercontent.com/310223/150100369-3eb15e7c-aa57-4106-809e-6d8331fc2635.png"
+            width={200}
+            height={80}
             alt="logo"
-            className="h-20"
+            className="h-20 w-20"
           />
         </Link>
         {!isLandingPage && <ConnectButton />}

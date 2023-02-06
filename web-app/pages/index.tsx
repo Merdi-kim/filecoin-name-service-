@@ -25,7 +25,7 @@ export default function Home() {
                 <p className="sm:text-sm md:text-lg lg:text-xl font-title lg:mt-4 xl:mt-6">
                   Your address is too long to remember or too long to easily share ?{' '}
                 </p>
-                <Image src="illustrations/angry.png" alt="" className="lg:h-36 xl:h-40" />
+                <Image src="/illustrations/angry.png" height={400} width={250} alt="" className="lg:h-36 xl:h-40" />
               </div>
             </div>
             <div className="flex justify-end mt-6 md:mt-[-60px] lg:mt-[-200px]">
@@ -36,7 +36,7 @@ export default function Home() {
                     Don&apos;t worry, we&apos;ve got human readable names that you can assign to your address and easily share and
                     remember{' '}
                   </p>
-                  <Image src="illustrations/smile.png" alt="" className="h-24 md:h-28 lg:h-36 xl:h-40" />
+                  <Image src="/illustrations/smile.png" height={400} width={400} alt="" className="h-24 md:h-28 lg:h-36 xl:h-40" />
                 </div>
               </div>
             </div>
