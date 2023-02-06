@@ -6,7 +6,6 @@ import { contractAddress } from '@/utils';
 import abi from '@/artifacts/contracts/fns.sol/FNS.json';
 import { useContract, useSigner } from 'wagmi';
 import { ethers } from 'ethers';
-import { CLIENT_RENEG_LIMIT } from 'tls';
 import Image from 'next/image';
 
 function Modal({ setModal }: IModalProps) {
