@@ -1,4 +1,5 @@
 import { IHomeActionButtonProps } from '@/lib/types';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
@@ -6,7 +7,7 @@ function HomeActionButton({ hideArrow }: IHomeActionButtonProps) {
   return (
     <div className="flex flex-col justify-center items-center h-32">
       {!hideArrow && (
-        <img src="/icons/arrowsDown.svg" alt="" className="h-10 w-10 p-2 bg-btnColor mb-2 rounded-[50%]" />
+        <Image src="/icons/arrowsDown.svg" alt="" className="h-10 w-10 p-2 bg-btnColor mb-2 rounded-[50%]" />
       )}
       <Link
         href={'/home'}

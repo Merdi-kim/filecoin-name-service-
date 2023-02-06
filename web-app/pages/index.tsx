@@ -33,7 +33,7 @@ export default function Home() {
                 <h2 className="lg:text-4xl xl:text-5xl font-title">vitalik.fil</h2>
                 <div className="flex">
                   <p className="lg:text-xl font-title lg:mt-4 xl:mt-6">
-                    Don't worry, we've got human readable names that you can assign to your address and easily share and
+                    Don&apos;t worry, we&apos;ve got human readable names that you can assign to your address and easily share and
                     remember{' '}
                   </p>
                   <Image src="illustrations/smile.png" alt="" className="h-24 md:h-28 lg:h-36 xl:h-40" />
@@ -58,7 +58,7 @@ export default function Home() {
             <div className="w-[95%] sm:w-[70%] md:w-[50%] lg:w-[40%] p-6 bg-cardColor rounded-lg mb-8">
               <h3 className="font-title mb-4">Own your handle</h3>
               <p className="font-title">
-                Once you have purchassed a handle, you're free to use it for the amount of time that you have paid for.
+                Once you have purchassed a handle, you&apos;re free to use it for the amount of time that you have paid for.
                 You can also set a second address to help you manage it.
               </p>
             </div>
