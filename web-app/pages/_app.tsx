@@ -1,7 +1,7 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import '@/styles/globals.css';
+import type { AppProps } from 'next/app';
 import '@rainbow-me/rainbowkit/styles.css';
-import {mainnet, localhost} from 'wagmi/chains'
+import { mainnet, localhost } from 'wagmi/chains';
 import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { configureChains, createClient, WagmiConfig } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
@@ -10,33 +10,29 @@ import { filecoinChain } from '@/utils';
 import { RecoilRoot } from 'recoil';
 
 const { chains, provider } = configureChains(
-  [/*,filecoinChain*/ localhost],
-  [
-    alchemyProvider({ apiKey: 'LhltBAHnspBMIgCx1SsxYJqM_rJOeZYe' }),
-    publicProvider()
-  ]
+  [filecoinChain /*localhost*/],
+  [alchemyProvider({ apiKey: 'LhltBAHnspBMIgCx1SsxYJqM_rJOeZYe' }), publicProvider()],
 );
 
 const { connectors } = getDefaultWallets({
   appName: 'Filecoin Name Service',
-  chains
+  chains,
 });
 
 const wagmiClient = createClient({
-  //autoConnect: true,
+  autoConnect: true,
   connectors,
-  provider
-})
+  provider,
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
       <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains}>
-      <Component {...pageProps} />
-      </RainbowKitProvider>
-    </WagmiConfig>
+        <RainbowKitProvider chains={chains}>
+          <Component {...pageProps} />
+        </RainbowKitProvider>
+      </WagmiConfig>
     </RecoilRoot>
-    
-  )
+  );
 }
